@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Proje.Models.City>
+
+<ul>
+    @foreach(var item in Model)
+    {
+    <li>@item.name, <b>@await Component.InvokeAsync("SelectedCountry", @item.CountryCode)</b></li>
+    }
+</ul>
+

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Proje.Models.City>
+
+@{
+    Layout = "../Admin/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Cities";
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.tour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountryCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tour.TourId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                <span class="badge bg-success"><a asp-action="Edit" asp-route-id="@item.CityID">Edit</a></span>
+                <span class="badge bg-info"><a asp-action="Details" asp-route-id="@item.CityID">Details</a></span>
+                <span class="badge bg-danger"><a asp-action="Delete" asp-route-id="@item.CityID">Delete</a></span>
+</td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,60 @@
+﻿@model Proje.Models.City
+<!-- banner part start-->
+<section class="banner_part">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <div class="banner_text">
+                    <div class="banner_text_iner">
+                        <h5>Best way to tour</h5>
+                        <h1>Lorem ipsum dolor amet consec</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- banner part start-->
+<!-- banner part start-->
+<section class="search_your_country">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-lg-12">
+                <div class="search_form">
+                    <form asp-action="SearchResult" method="get">
+                        <div asp-validation-summary="All" class="form-row">
+                            <div class="col-lg-9">
+                                <div class="search_form_iner">
+                                    <select asp-for="CityID" class="custom_select" id="inlineFormCustomSelect1">
+                                        @await Component.InvokeAsync("CityList")
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <button class="search_btn" type="submit">search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <h1 style="font-family: Kaushan Script, cursive;">@Model.name</h1>
+        <div class="row">
+
+            <img src=@Model.photoUrl class="col-md-8" />
+            <div class="col-md-4">
+                <p><span style="font-family:  Poppins, sans-serif;font-weight:520;color: black">Country: </span> @await Component.InvokeAsync("SelectedCountry", @Model.CountryCode)</p>
+                <p><span style="font-family: Poppins, sans-serif;font-weight: 520;color: black">Description: </span>@Model.description</p>
+            </div>
+        </div>
+                @await Component.InvokeAsync("TourList", Model.TourId)
+
+
+
+
+
+
+
+
+
+

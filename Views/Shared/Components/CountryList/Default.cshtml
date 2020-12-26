@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Proje.Models.Country>
+
+@foreach (var item in Model)
+{
+    <option id="choice" value="@item.CountryCode">@item.Name</option>
+}
+
+

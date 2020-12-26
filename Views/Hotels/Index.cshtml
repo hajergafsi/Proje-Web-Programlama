@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Proje.Models.Hotel>
+
+@{
+    Layout = "../Admin/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Index";
+}
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.city)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tour)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.city.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tour.name)
+            </td>
+            <td>
+                <span class="badge bg-success"><a asp-action="Edit" asp-route-id="@item.HotelID">Edit</a></span> 
+                 <span class="badge bg-info"><a asp-action="Details" asp-route-id="@item.HotelID">Details</a></span> 
+                <span class="badge bg-danger"><a asp-action="Delete" asp-route-id="@item.HotelID">Delete</a></span>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

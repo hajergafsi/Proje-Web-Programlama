@@ -1,0 +1,6 @@
+﻿@model IEnumerable<Proje.Models.City>
+
+@foreach (var item in Model)
+{
+    <option value="@item.CityID">@item.name</option>
+}

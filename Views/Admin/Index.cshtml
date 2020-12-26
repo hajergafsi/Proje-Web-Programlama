@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "_LayoutAdmin.cshtml";
+    ViewData["Title"] = "DashBoard";
+}
+@model Admin ;
+
+<div class="row">
+    @{
+        TempData["name"] = "Cities";
+        TempData["count"] = @Model.citiesCount;
+        TempData["class"] = "bg-success";
+        TempData["icon"] = "ion-location";
+        TempData["controller"] = "Cities";
+        TempData["action"] = "Index";
+    }
+    @Html.Partial("_CardPartial", TempData)
+    @{
+        TempData["name"] = "Countries";
+        TempData["count"] = @Model.countriesCount;
+        TempData["class"] = "bg-info";
+        TempData["icon"] = "ion-plane";
+        TempData["controller"] = "Countries";
+        TempData["action"] = "Index";
+    }
+    @Html.Partial("_CardPartial", TempData)
+    @{
+        TempData["name"] = "Hotels";
+        TempData["count"] = @Model.hotelsCount;
+        TempData["class"] = "bg-warning";
+        TempData["icon"] = "ion-ios-home";
+        TempData["controller"] = "Hotels";
+        TempData["action"] = "Index";
+    }
+    @Html.Partial("_CardPartial", TempData)
+    @{
+        TempData["name"] = "Tours";
+        TempData["count"] = @Model.toursCount;
+        TempData["class"] = "bg-danger";
+        TempData["icon"] = "ion-map";
+        TempData["controller"] = "Tour";
+        TempData["action"] = "Details";
+    }
+    @Html.Partial("_CardPartial", TempData)
+</div>
