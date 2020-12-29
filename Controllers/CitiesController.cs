@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace Proje.Controllers
         }
 
         // GET: Cities
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Index()
         {
             var agencyContext = _context.Cities.Include(c => c.tour);
@@ -26,6 +28,7 @@ namespace Proje.Controllers
         }
 
         // GET: Cities/Details/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -45,6 +48,7 @@ namespace Proje.Controllers
         }
 
         // GET: Cities/Create
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             ViewData["TourId"] = new SelectList(_context.Tours, "TourId", "name");
@@ -57,6 +61,7 @@ namespace Proje.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Create([Bind("CityID,TourId,CountryCode,name,description,photoUrl")] City city)
         {
             if (ModelState.IsValid)
@@ -70,6 +75,7 @@ namespace Proje.Controllers
         }
 
         // GET: Cities/Edit/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -124,6 +130,7 @@ namespace Proje.Controllers
         }
 
         // GET: Cities/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -145,6 +152,7 @@ namespace Proje.Controllers
         // POST: Cities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var city = await _context.Cities.FindAsync(id);

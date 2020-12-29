@@ -1,4 +1,7 @@
-﻿@model Proje.Models.City
+﻿@{
+    ViewData["Title"] = "Search Results";
+}
+@model Proje.Models.City
 <!-- banner part start-->
 <section class="banner_part">
     <div class="container">
@@ -47,7 +50,7 @@
                 <p><span style="font-family: Poppins, sans-serif;font-weight: 520;color: black">Description: </span>@Model.description</p>
             </div>
         </div>
-                @await Component.InvokeAsync("TourList", Model.TourId)
+        @await Component.InvokeAsync("TourList", Model.TourId)
 
 
 

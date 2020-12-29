@@ -10,90 +10,91 @@ using Proje.Models;
 
 namespace Proje.Controllers
 {
-    public class CountriesController : Controller
+    public class ToursController : Controller
     {
         private readonly AgencyContext _context;
 
-        public CountriesController(AgencyContext context)
+        public ToursController(AgencyContext context)
         {
             _context = context;
         }
 
-        // GET: Countries
+        // GET: Tours
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Countries.ToListAsync());
+            return View(await _context.Tours.ToListAsync());
         }
 
-        // GET: Countries/Details/5
+        // GET: Tours/Details/5
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var country = await _context.Countries
-                .FirstOrDefaultAsync(m => m.CountryCode == id);
-            if (country == null)
+            var tour = await _context.Tours
+                .FirstOrDefaultAsync(m => m.TourId == id);
+            if (tour == null)
             {
                 return NotFound();
             }
 
-            return View(country);
+            return View(tour);
         }
 
-        // GET: Countries/Create
+        // GET: Tours/Create
         [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Countries/Create
+        // POST: Tours/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CountryCode,Name")] Country country)
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> Create([Bind("TourId,name,Icon,description,startDate,endDate,image,cost")] Tour tour)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(country);
+                _context.Add(tour);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(country);
+            return View(tour);
         }
 
-        // GET: Countries/Edit/5
+        // GET: Tours/Edit/5
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var country = await _context.Countries.FindAsync(id);
-            if (country == null)
+            var tour = await _context.Tours.FindAsync(id);
+            if (tour == null)
             {
                 return NotFound();
             }
-            return View(country);
+            return View(tour);
         }
 
-        // POST: Countries/Edit/5
+        // POST: Tours/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> Edit(string id, [Bind("CountryCode,Name")] Country country)
+        public async Task<IActionResult> Edit(int id, [Bind("TourId,name,Icon,description,startDate,endDate,image,cost")] Tour tour)
         {
-            if (id != country.CountryCode)
+            if (id != tour.TourId)
             {
                 return NotFound();
             }
@@ -102,12 +103,12 @@ namespace Proje.Controllers
             {
                 try
                 {
-                    _context.Update(country);
+                    _context.Update(tour);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CountryExists(country.CountryCode))
+                    if (!TourExists(tour.TourId))
                     {
                         return NotFound();
                     }
@@ -118,43 +119,43 @@ namespace Proje.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(country);
+            return View(tour);
         }
 
-        // GET: Countries/Delete/5
+        // GET: Tours/Delete/5
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var country = await _context.Countries
-                .FirstOrDefaultAsync(m => m.CountryCode == id);
-            if (country == null)
+            var tour = await _context.Tours
+                .FirstOrDefaultAsync(m => m.TourId == id);
+            if (tour == null)
             {
                 return NotFound();
             }
 
-            return View(country);
+            return View(tour);
         }
 
-        // POST: Countries/Delete/5
+        // POST: Tours/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin")]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var country = await _context.Countries.FindAsync(id);
-            _context.Countries.Remove(country);
+            var tour = await _context.Tours.FindAsync(id);
+            _context.Tours.Remove(tour);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CountryExists(string id)
+        private bool TourExists(int id)
         {
-            return _context.Countries.Any(e => e.CountryCode == id);
+            return _context.Tours.Any(e => e.TourId == id);
         }
     }
 }

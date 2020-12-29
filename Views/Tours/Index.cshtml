@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Proje.Models.Tour>
+
+@{
+    Layout = "../Admin/_LayoutAdmin.cshtml";
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Icon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.startDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.endDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cost)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.startDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.endDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cost)€
+            </td>
+            <td>
+                <span class="badge bg-success"><a asp-action="Edit" asp-route-id="@item.TourId">Edit</a></span>
+                <span class="badge bg-info"><a asp-action="Details" asp-route-id="@item.TourId">Details</a></span>
+                <span class="badge bg-danger"><a asp-action="Delete" asp-route-id="@item.TourId">Delete</a></span>
+</td>
+        </tr>
+}
+    </tbody>
+</table>

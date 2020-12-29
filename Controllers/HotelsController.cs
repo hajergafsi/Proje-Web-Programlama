@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace Proje.Controllers
         }
 
         // GET: Hotels
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Index()
         {
             var agencyContext = _context.Hotels.Include(h => h.city).Include(h => h.tour);
@@ -26,6 +28,7 @@ namespace Proje.Controllers
         }
 
         // GET: Hotels/Details/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -46,6 +49,7 @@ namespace Proje.Controllers
         }
 
         // GET: Hotels/Create
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             ViewData["CityID"] = new SelectList(_context.Cities, "CityID", "name");
@@ -58,6 +62,7 @@ namespace Proje.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Create([Bind("HotelID,name,image,CityID,TourId")] Hotel hotel)
         {
             if (ModelState.IsValid)
@@ -72,6 +77,7 @@ namespace Proje.Controllers
         }
 
         // GET: Hotels/Edit/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -94,6 +100,7 @@ namespace Proje.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int id, [Bind("HotelID,name,image,CityID,TourId")] Hotel hotel)
         {
             if (id != hotel.HotelID)
@@ -127,6 +134,7 @@ namespace Proje.Controllers
         }
 
         // GET: Hotels/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -149,6 +157,7 @@ namespace Proje.Controllers
         // POST: Hotels/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var hotel = await _context.Hotels.FindAsync(id);

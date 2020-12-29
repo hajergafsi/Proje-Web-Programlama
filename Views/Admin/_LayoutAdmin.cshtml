@@ -28,8 +28,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="~/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="~/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- JQVMap -->
-    <link rel="stylesheet" href="~/admin/plugins/jqvmap/jqvmap.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="~/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Daterange picker -->
@@ -48,7 +46,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="~/admin/index3.html" class="nav-link">Home</a>
+                    <a asp-controller="Home" asp-action="Index" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Contact</a>
@@ -86,7 +84,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="~/admin/index3.html" class="brand-link">
+            <a asp-controller="Admin" asp-action="Index" class="brand-link">
                 <img src="~/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">Admin Panel</span>
             </a>
@@ -116,7 +114,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item caret">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
                                 <p>
@@ -126,7 +124,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a asp-controller="Tour" asp-action="Details" class="nav-link">
+                                    <a asp-controller="Tours" asp-action="Index" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Tours</p>
                                     </a>
@@ -199,20 +197,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="~/admin/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script>
-        $.widget.bridge('uibutton', $.ui.button)
+        $.widget.bridge('uibutton', $.ui.button);
     </script>
     <script src="~/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="~/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="~/admin/dist/js/adminlte.min.js"></script>
-    <!-- ChartJS -->
-    <script src="~/admin/plugins/chart.js/Chart.min.js"></script>
     <!-- Sparkline -->
     <script src="~/admin/plugins/sparklines/sparkline.js"></script>
-    <!-- JQVMap -->
-    <script src="~/admin/plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="~/admin/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
     <!-- jQuery Knob Chart -->
     <script src="~/admin/plugins/jquery-knob/jquery.knob.min.js"></script>
     <!-- daterangepicker -->
@@ -226,6 +219,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="~/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="~/admin/dist/js/demo.js"></script>
+    <script src="~/admin/pages/tables/simple.html"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="~/admin/dist/js/pages/dashboard.js"></script>
     @RenderSection("Scripts", required: false)

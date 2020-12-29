@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Proje.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
 
 namespace Proje
 {
@@ -28,6 +30,18 @@ namespace Proje
             services.AddControllersWithViews();
             var connection = @"server=(localdb)\MSSQLLocalDB;database=Agency;trusted_connection=true;";
             services.AddDbContext<AgencyContext>(options => options.UseSqlServer(connection));
+            services.AddIdentity<User,Role>()
+            .AddDefaultTokenProviders()
+            .AddDefaultUI()
+            .AddEntityFrameworkStores<AgencyContext>();
+            services.Configure<IdentityOptions>(options =>
+                {
+                    options.Password.RequiredLength = 8;
+                    options.Password.RequireDigit = true;
+                    options.Password.RequireLowercase = true;
+                }
+            ) ;
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +61,7 @@ namespace Proje
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -55,6 +69,7 @@ namespace Proje
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

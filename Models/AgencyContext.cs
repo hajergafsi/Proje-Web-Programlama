@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Proje.Models
 {
-    public class AgencyContext : DbContext
+    public class AgencyContext : IdentityDbContext<User>
     {
         
         public DbSet<City> Cities { get; set; }

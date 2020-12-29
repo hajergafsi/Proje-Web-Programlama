@@ -19,11 +19,12 @@
     <div class="col-10 tour-detail-box">
         <h1>@Model.name</h1>
         <p><label asp-for="Duration"></label>:  @Model.Duration</p>
+        <p><label asp-for="cost"></label>:  @Model.cost</p>
         <p><label asp-for="startDate"></label>: @Model.startDate.ToString("dd/MM/yyyy")<p>
         <p><label asp-for="endDate"></label>: @Model.endDate.ToString("dd/MM/yyyy")</p>
         <p><label asp-for="description"></label>: @Model.description</p>
         <div class="d-lg-flex flex-lg-row">
-            @await Component.InvokeAsync("CityList",new {id = Model.TourId,mode="Slider" })
+            @await Component.InvokeAsync("CityList", new { id = Model.TourId, mode = "Slider" })
             @await Component.InvokeAsync("HotelList", Model.TourId)
         </div>
     </div>

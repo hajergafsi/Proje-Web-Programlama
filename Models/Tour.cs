@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,7 +23,10 @@ namespace Proje.Models
         [Display(Name = "Tour ending date")]
         public DateTime endDate { get; set; }
         [Display(Name = "Tour duration")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public int Duration { get; set; }
         public string image { get; set; }
+        [Display(Name = "Tour cost")]
+        public double cost { get; set; }
     }
 }

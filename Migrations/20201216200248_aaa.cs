@@ -6,6 +6,13 @@ namespace Proje.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<double>(
+               name: "cost",
+               table: "Tours",
+               type: "float",
+               nullable: false,
+               defaultValue: 0.0);
+            /*
             migrationBuilder.CreateTable(
                 name: "Hotels",
                 columns: table => new
@@ -16,7 +23,7 @@ namespace Proje.Migrations
                     image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CityID = table.Column<int>(type: "int", nullable: false),
                     TourId = table.Column<int>(type: "int", nullable: false)
-                },
+                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Hotels", x => x.HotelID);
@@ -42,13 +49,17 @@ namespace Proje.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Hotels_TourId",
                 table: "Hotels",
-                column: "TourId");
+                column: "TourId");*/
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Hotels");
+            migrationBuilder.DropColumn(
+            name: "cost",
+            table: "Tours");
+
+            /* migrationBuilder.DropTable(
+                 name: "Hotels");*/
         }
     }
 }
