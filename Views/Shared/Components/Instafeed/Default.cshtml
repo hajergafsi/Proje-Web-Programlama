@@ -1,0 +1,13 @@
+﻿@model IEnumerable<InstaPost>
+
+    <div class="col-sm-6 col-lg-3">
+        <div class="single_footer_part">
+            <h4>Instafeed</h4>
+            <div class="footer_img">
+                @foreach(var item in Model)
+                {
+                <a><img src=@item.photoUrl alt=""></a>
+                }               
+            </div>
+        </div>
+    </div>

@@ -1,5 +1,11 @@
 ﻿@model Tour
-    <!-- banner part start-->
+
+@{
+     ViewData["title"] = Model.name; 
+     TempData["TourId"] = Model.TourId;
+
+}
+<!-- banner part start-->
 <section class="banner_part">
     <div class="container">
         <div class="row align-items-center">
@@ -12,14 +18,14 @@
                 </div>
             </div>
         </div>
-    </div
+    </div>
+
 </section>
-<!-- banner part start-->
 <section>
-    <div class="col-10 tour-detail-box">
+    <div class="col-10 tour-detail-box" style="margin-top:-300px">
         <h1>@Model.name</h1>
         <p><label asp-for="Duration"></label>:  @Model.Duration</p>
-        <p><label asp-for="cost"></label>:  @Model.cost</p>
+        <p><label asp-for="cost"></label>:  @Model.cost €</p>
         <p><label asp-for="startDate"></label>: @Model.startDate.ToString("dd/MM/yyyy")<p>
         <p><label asp-for="endDate"></label>: @Model.endDate.ToString("dd/MM/yyyy")</p>
         <p><label asp-for="description"></label>: @Model.description</p>
@@ -28,5 +34,9 @@
             @await Component.InvokeAsync("HotelList", Model.TourId)
         </div>
     </div>
-
+    <a asp-controller="Bookings" asp-action="Create" class="btn_1 text-center d-lg-block col-2" style="
+    margin-top: 30px;
+    margin-left: 40%;
+">Book Now</a>
 </section>
+<!-- banner part start-->

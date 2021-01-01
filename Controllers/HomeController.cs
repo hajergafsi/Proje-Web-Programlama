@@ -32,9 +32,10 @@ namespace Proje.Controllers
             return View(scity);
         }
 
-        public IActionResult About()
+        public async Task<IActionResult> About()
         {
-            return View();
+            var about = await _context.About.FirstAsync();
+            return View(about);
         }
 
 

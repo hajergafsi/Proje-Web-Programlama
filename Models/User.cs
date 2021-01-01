@@ -21,6 +21,6 @@ namespace Proje.Models
         public string City { get; set; }
         [Display(Name = "Identity Number")]
         public string IdentityNumber { get; set; }
-        public Role role { get; set; }
+        public IdentityRole role { get; set; }
     }
 }

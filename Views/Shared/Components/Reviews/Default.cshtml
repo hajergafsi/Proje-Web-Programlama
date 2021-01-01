@@ -1,0 +1,27 @@
+﻿
+@model IEnumerable<Proje.Models.Review>
+<div class="col-lg-6 col-sm-6">
+    <div class="tour_package_cotent owl-carousel">
+        @foreach (var item in Model)
+        {
+            <div class="single_tour_package">
+                <img src=@item.imageUrl alt="" style="height: 250px">
+                <div class="tour_pack_content" style="height: 270px">
+                    <h4>@item.Username</h4>
+                    <p>
+                        @item.text
+                    </p>
+                    <div class="tour_content_rating">
+                        <ul>
+                            @for (int i = 0; i < item.rating; i++)
+                            {
+                                 <li><a><i class="fas fa-star"></i></a></li>
+                            }
+                        </ul>
+                        <a asp-action="Index" asp-controller="Package"  class="btn1">Check Packages</a>
+                    </div>
+                </div>
+            </div>
+        }
+       </div>
+</div>

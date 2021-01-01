@@ -10,8 +10,8 @@ using Proje.Models;
 namespace Proje.Migrations
 {
     [DbContext(typeof(AgencyContext))]
-    [Migration("20201229150050_miggg")]
-    partial class miggg
+    [Migration("20201230091037_bookings")]
+    partial class bookings
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -152,6 +152,31 @@ namespace Proje.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Proje.Models.Booking", b =>
+                {
+                    b.Property<int>("BookingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int?>("TourId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("customerId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("placed_at")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("BookingId");
+
+                    b.HasIndex("TourId");
+
+                    b.HasIndex("customerId");
+
+                    b.ToTable("Bookings");
+                });
+
             modelBuilder.Entity("Proje.Models.City", b =>
                 {
                     b.Property<int>("CityID")
@@ -194,6 +219,27 @@ namespace Proje.Migrations
                     b.ToTable("Countries");
                 });
 
+            modelBuilder.Entity("Proje.Models.CreditCard", b =>
+                {
+                    b.Property<int>("CardId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("CVV")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ExpirationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("number")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CardId");
+
+                    b.ToTable("CreditCards");
+                });
+
             modelBuilder.Entity("Proje.Models.Hotel", b =>
                 {
                     b.Property<int>("HotelID")
@@ -220,6 +266,28 @@ namespace Proje.Migrations
                     b.HasIndex("TourId");
 
                     b.ToTable("Hotels");
+                });
+
+            modelBuilder.Entity("Proje.Models.Payment", b =>
+                {
+                    b.Property<int>("PaymentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int?>("CardId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TourId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PaymentId");
+
+                    b.HasIndex("CardId");
+
+                    b.HasIndex("TourId");
+
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("Proje.Models.Tour", b =>
@@ -334,6 +402,9 @@ namespace Proje.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<string>("roleId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -343,6 +414,8 @@ namespace Proje.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("roleId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -398,6 +471,21 @@ namespace Proje.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Proje.Models.Booking", b =>
+                {
+                    b.HasOne("Proje.Models.Tour", "tour")
+                        .WithMany()
+                        .HasForeignKey("TourId");
+
+                    b.HasOne("Proje.Models.User", "customer")
+                        .WithMany()
+                        .HasForeignKey("customerId");
+
+                    b.Navigation("customer");
+
+                    b.Navigation("tour");
+                });
+
             modelBuilder.Entity("Proje.Models.City", b =>
                 {
                     b.HasOne("Proje.Models.Tour", "tour")
@@ -428,6 +516,21 @@ namespace Proje.Migrations
                     b.Navigation("tour");
                 });
 
+            modelBuilder.Entity("Proje.Models.Payment", b =>
+                {
+                    b.HasOne("Proje.Models.CreditCard", "card")
+                        .WithMany()
+                        .HasForeignKey("CardId");
+
+                    b.HasOne("Proje.Models.Tour", "tour")
+                        .WithMany()
+                        .HasForeignKey("TourId");
+
+                    b.Navigation("card");
+
+                    b.Navigation("tour");
+                });
+
             modelBuilder.Entity("Proje.Models.Tour", b =>
                 {
                     b.HasOne("Proje.Models.Country", "country")
@@ -435,6 +538,15 @@ namespace Proje.Migrations
                         .HasForeignKey("CountryCode");
 
                     b.Navigation("country");
+                });
+
+            modelBuilder.Entity("Proje.Models.User", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", "role")
+                        .WithMany()
+                        .HasForeignKey("roleId");
+
+                    b.Navigation("role");
                 });
 #pragma warning restore 612, 618
         }

@@ -30,7 +30,7 @@ namespace Proje
             services.AddControllersWithViews();
             var connection = @"server=(localdb)\MSSQLLocalDB;database=Agency;trusted_connection=true;";
             services.AddDbContext<AgencyContext>(options => options.UseSqlServer(connection));
-            services.AddIdentity<User,Role>()
+            services.AddIdentity<User,IdentityRole>()
             .AddDefaultTokenProviders()
             .AddDefaultUI()
             .AddEntityFrameworkStores<AgencyContext>();

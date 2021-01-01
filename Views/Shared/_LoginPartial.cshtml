@@ -6,14 +6,15 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
-        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button type="submit" class="btn_1 d-none d-lg-block">Logout</button>
-        </form>
+    <a class="manage text-center" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Welcome @User.Identity.Name!<br /><small> Click here to manage your Profile </small></a>
+    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+        <button type="submit" class="btn_1 d-lg-block">Logout</button>
+    </form>
 }
 else
 {
-    <a asp-area="Identity" asp-page="/Account/Login" class="btn_1 d-none d-lg-block">Login</a>
-    <a asp-area="Identity" asp-page="/Account/Register" class="btn_1 d-none d-lg-block" style="margin-left: 10px">Register</a>
+    <a asp-area="Identity" asp-page="/Account/Login" class="btn_1 d-lg-block ">Login</a>
+    <a asp-area="Identity" asp-page="/Account/Register" class="btn_1 d-lg-block " style="margin-left: 10px">Register</a>
 }
+
+

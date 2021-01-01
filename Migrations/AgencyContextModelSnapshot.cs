@@ -150,6 +150,124 @@ namespace Proje.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Proje.Models.About", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("intNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("logo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("number")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("About");
+                });
+
+            modelBuilder.Entity("Proje.Models.Activities", b =>
+                {
+                    b.Property<int>("ativityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("TourId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("imageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ativityId");
+
+                    b.ToTable("Activities");
+                });
+
+            modelBuilder.Entity("Proje.Models.BlogPost", b =>
+                {
+                    b.Property<int>("PostId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("comments")
+                        .HasColumnType("int");
+
+                    b.Property<string>("image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("likes")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("postingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PostId");
+
+                    b.ToTable("BlogPosts");
+                });
+
+            modelBuilder.Entity("Proje.Models.Booking", b =>
+                {
+                    b.Property<int>("BookingId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("PaymentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TourId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("customerId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("placed_at")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("state")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("BookingId");
+
+                    b.HasIndex("TourId");
+
+                    b.HasIndex("customerId");
+
+                    b.ToTable("Bookings");
+                });
+
             modelBuilder.Entity("Proje.Models.City", b =>
                 {
                     b.Property<int>("CityID")
@@ -192,6 +310,29 @@ namespace Proje.Migrations
                     b.ToTable("Countries");
                 });
 
+            modelBuilder.Entity("Proje.Models.CreditCard", b =>
+                {
+                    b.Property<int>("CardId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CVV")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ExpirationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CardId");
+
+                    b.ToTable("CreditCards");
+                });
+
             modelBuilder.Entity("Proje.Models.Hotel", b =>
                 {
                     b.Property<int>("HotelID")
@@ -218,6 +359,73 @@ namespace Proje.Migrations
                     b.HasIndex("TourId");
 
                     b.ToTable("Hotels");
+                });
+
+            modelBuilder.Entity("Proje.Models.InstaPost", b =>
+                {
+                    b.Property<int>("photoId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("photoUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("photoId");
+
+                    b.ToTable("InstaPosts");
+                });
+
+            modelBuilder.Entity("Proje.Models.Payment", b =>
+                {
+                    b.Property<int>("PaymentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("BookingId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CardId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TourId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("payment_date")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("PaymentId");
+
+                    b.HasIndex("CardId");
+
+                    b.HasIndex("TourId");
+
+                    b.ToTable("Payments");
+                });
+
+            modelBuilder.Entity("Proje.Models.Review", b =>
+                {
+                    b.Property<int>("ReviewId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("imageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ReviewId");
+
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("Proje.Models.Tour", b =>
@@ -332,6 +540,9 @@ namespace Proje.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<string>("roleId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -341,6 +552,8 @@ namespace Proje.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("roleId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -396,6 +609,23 @@ namespace Proje.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Proje.Models.Booking", b =>
+                {
+                    b.HasOne("Proje.Models.Tour", "tour")
+                        .WithMany()
+                        .HasForeignKey("TourId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Proje.Models.User", "customer")
+                        .WithMany()
+                        .HasForeignKey("customerId");
+
+                    b.Navigation("customer");
+
+                    b.Navigation("tour");
+                });
+
             modelBuilder.Entity("Proje.Models.City", b =>
                 {
                     b.HasOne("Proje.Models.Tour", "tour")
@@ -426,6 +656,23 @@ namespace Proje.Migrations
                     b.Navigation("tour");
                 });
 
+            modelBuilder.Entity("Proje.Models.Payment", b =>
+                {
+                    b.HasOne("Proje.Models.CreditCard", "card")
+                        .WithMany()
+                        .HasForeignKey("CardId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Proje.Models.Tour", "tour")
+                        .WithMany()
+                        .HasForeignKey("TourId");
+
+                    b.Navigation("card");
+
+                    b.Navigation("tour");
+                });
+
             modelBuilder.Entity("Proje.Models.Tour", b =>
                 {
                     b.HasOne("Proje.Models.Country", "country")
@@ -433,6 +680,15 @@ namespace Proje.Migrations
                         .HasForeignKey("CountryCode");
 
                     b.Navigation("country");
+                });
+
+            modelBuilder.Entity("Proje.Models.User", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", "role")
+                        .WithMany()
+                        .HasForeignKey("roleId");
+
+                    b.Navigation("role");
                 });
 #pragma warning restore 612, 618
         }

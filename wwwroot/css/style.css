@@ -6202,5 +6202,15 @@ h6 {
         FONT-WEIGHT: bold;
     }
 
+a.manage {
+    color: black;
+}
+
+    a.manage:hover {
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        color: whitesmoke;
+    }
+
 
 /*# sourceMappingURL=../css/style.map */

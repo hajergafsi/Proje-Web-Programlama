@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -16,12 +17,14 @@ namespace Proje.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
+        private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<LoginModel> _logger;
         private AgencyContext _context;
 
-        public LoginModel(SignInManager<User> signInManager, ILogger<LoginModel> logger, AgencyContext wsc)
+        public LoginModel(SignInManager<User> signInManager,UserManager<User> userManager, ILogger<LoginModel> logger, AgencyContext wsc)
         {
+            _userManager = userManager;       
             _signInManager = signInManager;           
             _logger = logger;
             _context = wsc;
@@ -77,7 +80,9 @@ namespace Proje.Areas.Identity.Pages.Account
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var user = _context.Users.FirstOrDefault(u => u.Email == Input.Email);
+                
                 var result = await _signInManager.PasswordSignInAsync(user, Input.Password, Input.RememberMe, lockoutOnFailure: true);
+                
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");

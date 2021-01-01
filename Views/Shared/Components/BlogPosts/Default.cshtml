@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Proje.Models.BlogPost>
+
+<div class="row">
+    @foreach(var item in Model)
+    {
+    <div class="col-lg-4 col-sm-6">
+        <div class="single_blog_part">
+            <img src=@item.image alt="" style="height: 250px">
+            <div class="blog_text">
+                <h2>@item.title</h2>
+                <p>
+                    @item.text.Substring(300) ;
+                </p>
+                <ul>
+                    <li>
+                        <i class="ti-calendar"></i>
+                        <p>@item.postingDate</p>
+                    </li>
+                    <li>
+                        <i class="ti-heart"></i>
+                        <p>@item.likes</p>
+                    </li>
+                    <li>
+                        <i class="far fa-comment-dots"></i>
+                        <p>@item.comments</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    }
+    
+    </div>

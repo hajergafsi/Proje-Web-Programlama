@@ -61,6 +61,7 @@ namespace Proje.Controllers
         {
             if (ModelState.IsValid)
             {
+                country.CountryCode = country.CountryCode.ToUpper();
                 _context.Add(country);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

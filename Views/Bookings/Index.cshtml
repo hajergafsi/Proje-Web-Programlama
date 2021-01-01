@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Proje.Models.Booking>
+
+@{
+    ViewData["Title"] = "Bookings";
+    TempData.Keep("userId");
+}
+
+<section class="breadcrumb breadcrumb_bg">
+    <div class="container">
+        <div class="row" style="margin-top: 120px">
+            <div class="col-lg-12">
+                <h1>@ViewData["Title"] </h1>
+                <div class="breadcrumb_iner text-center">
+                    <div class="breadcrumb_iner_item">
+                        @if(Model.Count() == 0) 
+                        {<h4 class="text-danger">No bookings have been made ! </h4> }
+                        else
+                        {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tour.name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tour.startDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tour.endDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.tour.cost)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.placed_at)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.state)
+                                </th>
+                                <th>
+                                    Cancel
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tour.name)
+                                    </td>
+                                    <td>
+                                        @item.tour.startDate.ToShortDateString()
+                                    </td>
+                                    <td>
+                                        @item.tour.endDate.ToShortDateString()
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.tour.cost)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.placed_at)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.state)
+                                    </td>
+                                    <td>
+                                        @if (item.state != "Confirmed")
+                                        {
+                                            TempData["BookingId"] = item.BookingId;<a asp-action="Authenticate" asp-controller="CreditCards">Pay Now | </a>}   <a asp-action="Delete" asp-route-id="@item.BookingId">Cancel Booking</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                        }
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

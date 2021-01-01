@@ -1,0 +1,61 @@
+﻿@model Proje.Models.Booking
+
+@{
+    ViewData["Title"] = "Delete";
+    TempData.Keep("isPayedDate");
+}
+<section class="cta_part section_padding">
+    <div class="container" style="padding-top: 100px;">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-8 col-xl-7">
+                <div class="cta_text text-center" style="background: antiquewhite;border: grey 1px solid;padding: 20px 20px">
+                    <h3 style=" color: lightcoral; ">Are you sure you want to cancel this Booking?</h3>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.tour.name)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.tour.name)
+                        </dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.state)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.state)
+                        </dd>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.placed_at)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.placed_at)
+                        </dd>
+                    </dl>
+                    @if (TempData["isPayedDate"] != null)
+                    {
+                        <dl class="row">
+                            <dt class="col-sm-2">
+                                Payed at :
+                            </dt>
+                            <dd class="col-sm-10">
+                                @TempData["isPayedDate"]
+                            </dd>
+                        </dl>
+                    }
+
+
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="BookingId" />
+                        <input type="submit" value="Cancel" class="btn btn-danger" /> |
+                        <a asp-action="Index">Back to Bookings List</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
