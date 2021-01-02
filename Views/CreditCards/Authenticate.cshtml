@@ -21,7 +21,8 @@
             <div class="">
                 @if (TempData["error"] != null)
                 {
-                    <div class="alert alert-danger">@TempData["error"]</div>
+                    
+                <div class="alert alert-danger">@localizer[@TempData["error"].ToString()]</div>
 
                 }
                 <form asp-action="Authenticate">

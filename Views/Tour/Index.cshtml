@@ -1,8 +1,8 @@
 ﻿@model Tour
-
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @{
-     ViewData["title"] = Model.name; 
-     TempData["TourId"] = Model.TourId;
+    ViewData["title"] = Model.name;
+    TempData["TourId"] = Model.TourId;
 }
 <!-- banner part start-->
 <partial name="_BannerPartial" />
@@ -22,6 +22,6 @@
     <a asp-controller="Bookings" asp-action="Create" class="btn_1 text-center d-lg-block col-2" style="
     margin-top: 30px;
     margin-left: 40%;
-">Book Now</a>
+">@localizer["Book Now"]</a>
 </section>
 <!-- banner part start-->

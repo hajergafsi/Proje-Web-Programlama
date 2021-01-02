@@ -129,4 +129,13 @@
   <data name="Payment" xml:space="preserve">
     <value>Ödeme</value>
   </data>
+  <data name="Please enter only numbers" xml:space="preserve">
+    <value>Lütfen yalnızca sayı girin</value>
+  </data>
+  <data name="Wrong Credit Card Number" xml:space="preserve">
+    <value>Yanlış Kredi Kartı Numarası</value>
+  </data>
+  <data name="Wrong CVV or Expiration Date" xml:space="preserve">
+    <value>Yanlış CVV veya Son Kullanma Tarihi</value>
+  </data>
 </root>

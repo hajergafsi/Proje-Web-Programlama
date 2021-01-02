@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>Biz kimiz ? </value>
   </data>
+  <data name="about company" xml:space="preserve">
+    <value>Tourbi olarak, müşterilerimize deneyimimizden, benzersiz tarzımızdan ve enerjimizden yararlanmalarını sağlamak için profesyonel bir hizmet sunmayı taahhüt ediyoruz. Son derece görünür, bağımsız ve ilerici bir seyahat acentesi olarak yaptığımız her şeyde bir fark yaratmayı hedefliyoruz.Tourbi Travel, tüm tedarik zincirini dikkate almak için tüm seyahat endüstrisini etkilemeye kararlıdır. Müşterilerin düşük yakıt tüketimi için bir havayolu şirketi, işgücü uygulamaları için gelişmekte olan dünyada bir otel ve yerel topluluğu içeren bir tur şirketi seçtikleri bir endüstri görmek istiyoruz. onları dünya üzerinde olumlu etkisi olan tedarikçilere yönlendirecek farkındalık ve deneyim.</value>
+  </data>
   <data name="company" xml:space="preserve">
     <value>Bizim Şirketimiz</value>
   </data>

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Localization;
+using Microsoft.AspNetCore.Localization;
 using Proje.Models;
 
 namespace Proje.Controllers
@@ -13,7 +15,6 @@ namespace Proje.Controllers
     public class CreditCardsController : Controller
     {
         private readonly AgencyContext _context;
-
         public CreditCardsController(AgencyContext context)
         {
             _context = context;
@@ -49,16 +50,15 @@ namespace Proje.Controllers
                         await _context.SaveChangesAsync();
                         TempData["CardId"] = card.CardId;
                         TempData["BookingId"] = creditCard.CardId;
-                        return RedirectToAction("Create", "Payments");
+                        return RedirectToAction("Complete", "Payments");
                         }
                     else
                     {
-                        ViewBag.error = "Wrong CVV or Expiration Date";
+                        
                         TempData["error"] = "Wrong CVV or Expiration Date";
                         return RedirectToAction(nameof(Authenticate));
                     }
                 }
-                ViewBag.error = "Wrong Credit Card Number";
                 TempData["error"] = "Wrong Credit Card Number";
                 return RedirectToAction("Authenticate", "CreditCards");
 

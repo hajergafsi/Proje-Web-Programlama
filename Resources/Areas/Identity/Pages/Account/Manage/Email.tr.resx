@@ -123,6 +123,9 @@
   <data name="Manage" xml:space="preserve">
     <value>E-mail adresini yönet</value>
   </data>
+  <data name="New email" xml:space="preserve">
+    <value>Yeni email adresi</value>
+  </data>
   <data name="Send" xml:space="preserve">
     <value>Doğrulama adresini gönder</value>
   </data>

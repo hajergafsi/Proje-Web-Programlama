@@ -16,6 +16,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using System.Globalization;
 using Microsoft.Extensions.Options;
+using System.Reflection;
+using Proje.Resources;
 
 namespace Proje
 {
@@ -34,7 +36,8 @@ namespace Proje
             services.AddControllersWithViews();
             var connection = @"server=(localdb)\MSSQLLocalDB;database=Agency;trusted_connection=true;";
             services.AddLocalization(opt => { opt.ResourcesPath = "Resources"; });
-            services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
+            services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                .AddDataAnnotationsLocalization();
             services.AddDbContext<AgencyContext>(options => options.UseSqlServer(connection));
             services.Configure<RequestLocalizationOptions>(
                 opt =>

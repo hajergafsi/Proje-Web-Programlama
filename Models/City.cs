@@ -14,7 +14,7 @@ namespace Proje.Models
         public int TourId { get; set; }
         public Tour tour { get; set; }
         public string CountryCode { get; set; }
-        [Display(Name = "City Name")]
+        [Display(Name = "CityName")]
         public string name { get; set; }   
         public string description { get; set; }
         public string photoUrl { get; set; }

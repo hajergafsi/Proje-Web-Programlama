@@ -120,6 +120,9 @@
   <data name="Create" xml:space="preserve">
     <value>Create a new account.</value>
   </data>
+  <data name="Enter First Name" xml:space="preserve">
+    <value>Enter First Name</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>

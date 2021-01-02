@@ -117,16 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>About us </value>
-  </data>
-  <data name="about company" xml:space="preserve">
-    <value>At Tourbi we are committed to providing a professional service to our customers, ensuring they benefit from our experience, unique style and  energy. A highly visible, independent and progressive travel agency, we aim to make a difference in everything we do.Tourbi Travel is committed to influencing the entire travel industry to consider the whole supply chain. We would like to see an industry where customers are choosing an airline for its low fuel consumption, a hotel in the developing world for its labour practices, and a tour company that involves the local community, booking them all with a travel agency that has the awareness and experience to guide them toward suppliers that have a positive impact on the world.</value>
-  </data>
-  <data name="company" xml:space="preserve">
-    <value>Our Company</value>
-  </data>
-  <data name="contact" xml:space="preserve">
-    <value>Contact Info</value>
-  </data>
 </root>

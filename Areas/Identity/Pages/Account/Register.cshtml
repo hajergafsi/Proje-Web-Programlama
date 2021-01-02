@@ -10,34 +10,34 @@
         <hr />
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="Input.ad"></label>
+            <label>@localizer["Enter First Name"]</label>
             <input asp-for="Input.ad" class="form-control" />
             <span asp-validation-for="Input.ad" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Input.SoyAad"></label>
+            <label>@localizer["Enter Last Name"]</label>
             <input asp-for="Input.SoyAad" class="form-control" />
             <span asp-validation-for="Input.SoyAad" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Input.UserName"></label>
+            <label>@localizer["UserName"]</label>
             <input asp-for="Input.UserName" class="form-control" />
             <span asp-validation-for="Input.UserName" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="Input.Email"></label>
+            <label>@localizer["Email"]</label>
             <input asp-for="Input.Email" class="form-control" />
             <span asp-validation-for="Input.Email" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Input.Password"></label>
+            <label>@localizer["Password"]</label>
             <input asp-for="Input.Password" class="form-control" />
             <span asp-validation-for="Input.Password" class="text-danger"></span>
         </div>
         <div class="form-group">
-            <label asp-for="Input.ConfirmPassword"></label>
+            <label>@localizer["Confirm password"]</label>
             <input asp-for="Input.ConfirmPassword" class="form-control" />
             <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
         </div>

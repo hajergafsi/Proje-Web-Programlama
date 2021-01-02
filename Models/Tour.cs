@@ -11,22 +11,22 @@ namespace Proje.Models
     {
         [Key]
         public int TourId { get; set; }
-        [Display(Name = "Tour Name")]
+        [Display(Name = "TourName")]
         public string name { get; set; }
         [Display(Name = "Country")]
         public Country country { get; set; }
         public string Icon { get; set; }
         [Display(Name = "Description")]
         public string description { get; set; }
-        [Display(Name = "Tour starting date")]
+        [Display(Name = "TourStartingDate")]
         public DateTime startDate { get; set; }
-        [Display(Name = "Tour ending date")]
+        [Display(Name = "TourEndingDate")]
         public DateTime endDate { get; set; }
-        [Display(Name = "Tour duration")]
+        [Display(Name = "TourDuration")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public int Duration { get; set; }
         public string image { get; set; }
-        [Display(Name = "Tour cost")]
+        [Display(Name = "TourCost")]
         public double cost { get; set; }
     }
 }

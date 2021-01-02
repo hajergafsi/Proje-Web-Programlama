@@ -22,7 +22,7 @@ namespace Proje.Controllers
 
         // GET: Payments/Create
         [Authorize]
-        public IActionResult Create()
+        public IActionResult Complete()
         {
             return View();
         }
@@ -33,7 +33,7 @@ namespace Proje.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PaymentId,BookingId,CardId")] Payment payment)
+        public async Task<IActionResult> Complete([Bind("PaymentId,BookingId,CardId")] Payment payment)
         {
             if (ModelState.IsValid)
             {

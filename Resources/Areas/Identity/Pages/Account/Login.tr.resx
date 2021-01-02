@@ -123,7 +123,13 @@
   <data name="login" xml:space="preserve">
     <value>Giriş yap</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Şifre</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>kayıt ol</value>
+  </data>
+  <data name="Remember me?" xml:space="preserve">
+    <value>Beni Hatırla?</value>
   </data>
 </root>

@@ -1,25 +1,25 @@
 ﻿@model Proje.Models.Counts
-
-    <div class="row">
-        <div class="col-sm-6 col-md-4">
-            <div class="feature_part_text_iner">
-                <img src="~/img/icon/tour_icon_2.png" alt="">
-                <h4>@Html.DisplayNameFor(Model => Model.CityCount)</h4>
-                <p>@Model.CityCount @Html.DisplayNameFor(Model => Model.CityCount)</p>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="feature_part_text_iner">
-                <img src="~/img/icon/tour_icon_3.png" alt="">
-                <h4>@Html.DisplayNameFor(Model => Model.CountryCount)</h4>
-                <p>@Model.CountryCount @Html.DisplayNameFor(Model => Model.CountryCount)</p>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="feature_part_text_iner">
-                <img src="~/img/icon/tour_icon_1.png" alt="">
-                <h4>@Html.DisplayNameFor(Model => Model.TourCount)</h4>
-                <p>@Model.TourCount @Html.DisplayNameFor(Model => Model.TourCount)</p>
-            </div>
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+<div class="row">
+    <div class="col-sm-6 col-md-4">
+        <div class="feature_part_text_iner">
+            <img src="~/img/icon/tour_icon_2.png" alt="">
+            <h4>@Html.DisplayNameFor(Model => Model.CityCount)</h4>
+            <p>@Model.CityCount @localizer["Countries"]</p>
         </div>
     </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="feature_part_text_iner">
+            <img src="~/img/icon/tour_icon_3.png" alt="">
+            <h4>@Html.DisplayNameFor(Model => Model.CountryCount)</h4>
+            <p>@Model.CountryCount @localizer["Cities"]</p>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="feature_part_text_iner">
+            <img src="~/img/icon/tour_icon_1.png" alt="">
+            <h4>@Html.DisplayNameFor(Model => Model.TourCount)</h4>
+            <p>@Model.TourCount @localizer["Tours"]</p>
+        </div>
+    </div>
+</div>
