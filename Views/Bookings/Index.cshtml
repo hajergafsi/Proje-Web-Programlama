@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Proje.Models.Booking>
-
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @{
-    ViewData["Title"] = "Bookings";
+    ViewData["Title"] = localizer["Bookings"];
     TempData.Keep("userId");
 }
 
@@ -12,70 +12,70 @@
                 <h1>@ViewData["Title"] </h1>
                 <div class="breadcrumb_iner text-center">
                     <div class="breadcrumb_iner_item">
-                        @if(Model.Count() == 0) 
-                        {<h4 class="text-danger">No bookings have been made ! </h4> }
+                        @if (Model.Count() == 0)
+                        {<h4 class="text-danger">@localizer["NoBookings"]</h4> }
                         else
                         {
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tour.name)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tour.startDate)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tour.endDate)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.tour.cost)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.placed_at)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.state)
-                                </th>
-                                <th>
-                                    Cancel
-                                </th>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.tour.name)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.tour.startDate)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.tour.endDate)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.tour.cost)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.placed_at)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.state)
+                                        </th>
+                                        <th>
+                                            @localizer["Cancel"]
+                                        </th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tour.name)
-                                    </td>
-                                    <td>
-                                        @item.tour.startDate.ToShortDateString()
-                                    </td>
-                                    <td>
-                                        @item.tour.endDate.ToShortDateString()
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.tour.cost)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.placed_at)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.state)
-                                    </td>
-                                    <td>
-                                        @if (item.state != "Confirmed")
-                                        {
-                                            TempData["BookingId"] = item.BookingId;<a asp-action="Authenticate" asp-controller="CreditCards">Pay Now | </a>}   <a asp-action="Delete" asp-route-id="@item.BookingId">Cancel Booking</a>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.tour.name)
+                                            </td>
+                                            <td>
+                                                @item.tour.startDate.ToShortDateString()
+                                            </td>
+                                            <td>
+                                                @item.tour.endDate.ToShortDateString()
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.tour.cost)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.placed_at)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.state)
+                                            </td>
+                                            <td>
+                                                @if (item.state != "Confirmed")
+                                                {
+                                                    TempData["BookingId"] = item.BookingId;<a asp-action="Authenticate" asp-controller="CreditCards"> @localizer["Pay"] | </a>}   <a asp-action="Delete" asp-route-id="@item.BookingId"> @localizer["CancelB"] </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
                         }
-                        
+
                     </div>
                 </div>
             </div>

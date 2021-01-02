@@ -24,7 +24,7 @@ namespace Proje.Controllers
         [Authorize]
         public async Task<IActionResult> Index(string id)
         {
-            var bookings = await  _context.Bookings.Where(b => b.customerId == TempData["userId"]).ToListAsync();
+            var bookings = await _context.Bookings.Where(b => b.customerId == TempData["userId"]).ToListAsync();
             foreach (var b in bookings)
             {
                 var t = await _context.Tours.Where(t => t.TourId == b.TourId).FirstOrDefaultAsync();

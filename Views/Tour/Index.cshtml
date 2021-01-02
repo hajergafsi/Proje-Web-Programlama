@@ -3,24 +3,9 @@
 @{
      ViewData["title"] = Model.name; 
      TempData["TourId"] = Model.TourId;
-
 }
 <!-- banner part start-->
-<section class="banner_part">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-7">
-                <div class="banner_text">
-                    <div class="banner_text_iner">
-                        <h5>Best way to tour</h5>
-                        <h1>Lorem ipsum dolor amet consec</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</section>
+<partial name="_BannerPartial" />
 <section>
     <div class="col-10 tour-detail-box" style="margin-top:-300px">
         <h1>@Model.name</h1>

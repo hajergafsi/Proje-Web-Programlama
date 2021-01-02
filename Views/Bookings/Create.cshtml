@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Authorization
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
@@ -6,26 +7,13 @@
 @model Proje.Models.Booking
 
 @{
-    ViewData["Title"] = "Confirm Booking";
+    ViewData["Title"] = localizer["confirm"];
     TempData["userId"] = UserManager.GetUserId(User);
-    TempData.Keep();
+    TempData["height"] = "550px";
+    TempData.Keep("TourId");
 }
 <!-- banner part start-->
-<section class="banner_part" style="height: 550px;">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-7">
-                <div class="banner_text">
-                    <div class="banner_text_iner">
-                        <h5>Best way to tour</h5>
-                        <h1>Lorem ipsum dolor amet consec</h1>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</section>
+<partial name="_BannerPartial" />
 <div class="d-flex ">
     <div class="container text-center  justify-content-center" style="
     border: 1px black solid;
@@ -44,14 +32,14 @@
                     <input asp-for="TourId" type="hidden" value=@TempData["TourId"] />
                     <input asp-for="placed_at" type="hidden" value=@DateTime.Now />
                     <div class="form-group">
-                        <input type="submit" value="Confirm Booking" class="btn btn-primary" />
+                        <input type="submit" value="@localizer["confirmBtn"]" class="btn btn-primary" />
                     </div>
                 </form>
             </div>
         </div>
 
         <div>
-            <a asp-controller="Package" asp-action="Index">Back to Tour List</a>
+            <a asp-controller="Package" asp-action="Index">@localizer["Back"] </a>
         </div>
     </div>
 </div>

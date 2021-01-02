@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +14,8 @@ using Microsoft.EntityFrameworkCore;
 using Proje.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using System.Globalization;
+using Microsoft.Extensions.Options;
 
 namespace Proje
 {
@@ -29,7 +33,21 @@ namespace Proje
         {
             services.AddControllersWithViews();
             var connection = @"server=(localdb)\MSSQLLocalDB;database=Agency;trusted_connection=true;";
+            services.AddLocalization(opt => { opt.ResourcesPath = "Resources"; });
+            services.AddMvc().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
             services.AddDbContext<AgencyContext>(options => options.UseSqlServer(connection));
+            services.Configure<RequestLocalizationOptions>(
+                opt =>
+                {
+                    var supportedCultures = new List<CultureInfo>
+                    { 
+                        new CultureInfo("en"),
+                        new CultureInfo("tr") 
+                    };
+                    opt.DefaultRequestCulture = new RequestCulture("en");
+                    opt.SupportedCultures = supportedCultures;
+                    opt.SupportedUICultures = supportedCultures;
+                });
             services.AddIdentity<User,IdentityRole>()
             .AddDefaultTokenProviders()
             .AddDefaultUI()
@@ -63,6 +81,9 @@ namespace Proje
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseRequestLocalization(app.ApplicationServices.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
+
 
             app.UseEndpoints(endpoints =>
             {

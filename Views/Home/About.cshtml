@@ -1,6 +1,7 @@
-﻿@model Proje.Models.About
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model Proje.Models.About
 @{
-    ViewData["Title"] = "About";
+    ViewData["Title"] = localizer["About"];
 }
 <!-- breadcrumb start-->
 <section class="breadcrumb breadcrumb_bg">
@@ -9,7 +10,7 @@
             <div class="col-lg-12">
                 <div class="breadcrumb_iner text-center">
                     <div class="breadcrumb_iner_item">
-                        <h2>About Us</h2>
+                        <h2>@localizer["About"]</h2>
                     </div>
                 </div>
             </div>
@@ -18,14 +19,14 @@
 </section>
 <div class="d-flex justify-content-center col-12">
     <div class="d-flex col-10 flex-sm-column flex-md-column flex-lg-row flex-xs-column" style=" padding-top: 60px;">
-       
+
         <div class="col-md-10 col-lg-6" style="padding-right: 20px;padding-bottom: 20px;color: coral;">
-            <h3 style="font-weight: 200; font-family: 'Kaushan Script';">Our Company</h3> 
+            <h3 style="font-weight: 200; font-family: 'Kaushan Script';">@localizer["company"]</h3>
             <img src=@Model.logo />
             <p class="text-dark" style="font-weight: 200; font-family: 'Kaushan Script';">@Model.description</p>
         </div>
         <div class="col-md-10 col-lg-6" style="background: antiquewhite;padding: 30px 30px 0px 30px;border: 2px solid #ccc;">
-            <h3 style="color: coral;"> Contact Info </h3>
+            <h3 style="color: coral;"> @localizer["contact"] </h3>
             <dl class="row" style="padding-top: 10%;">
                 <span class="contact-info__icon"><i class="ti-home"></i></span>
                 <dt class="col-sm-10">

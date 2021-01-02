@@ -6,23 +6,36 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc.Localization;
 using Proje.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
 
 namespace Proje.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHtmlLocalizer<HomeController> _localizer;
         private readonly AgencyContext _context;
-        public City selected { get; set; }
-        public HomeController(ILogger<HomeController> logger, AgencyContext wsc)
+        public HomeController(IHtmlLocalizer<HomeController> localizer, ILogger<HomeController> logger, AgencyContext wsc)
         {
+            _localizer = localizer;
             _logger = logger;
             _context = wsc;
         }
         public IActionResult Index()
         {
-            return View(selected);
+            TempData["BookingId"] = null;
+            TempData["CardId"] = null;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CultureManagement(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)), new CookieOptions { Expires = DateTimeOffset.Now.AddDays(30) });
+            return LocalRedirect(returnUrl);
         }
 
         public async Task<IActionResult> SearchResult(City city)

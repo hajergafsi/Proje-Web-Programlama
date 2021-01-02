@@ -1,30 +1,28 @@
-﻿<footer class="footer_part">
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+<footer class="footer_part">
     <div class="container">
         <div class="row  d-flex justify-content-center">
             <div class="col-sm-6 col-lg-3">
                 <div class="single_footer_part">
-                    <h4>About Agency</h4>
+                    <h4>@localizer["About"] </h4>
                     <p>
-                        The world has become so fast paced that people don’t want
-                        to stand by reading a page of information, they would much
-                        rather look at a presentation and understand the message.
-                        It has come to a point where images
+                        @localizer["aboutDesc"]
                     </p>
                 </div>
             </div>
             <div class="col-sm-6 col-lg-3">
                 <div class="single_footer_part">
-                    <h4>Navigation Links</h4>
+                    <h4>@localizer["Navigation"] </h4>
                     <ul class="list-unstyled d-inline">
-                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-controller="Package" asp-action="Index">Packages</a></li>
-                        <li><a asp-controller="Home" asp-action="About">About</a></li>
-                        <li><a asp-controller="Home" asp-action="About">Contact</a></li>
+                        <li><a asp-controller="Home" asp-action="Index">@localizer["Home"]</a></li>
+                        <li><a asp-controller="Package" asp-action="Index">@localizer["Packages"]</a></li>
+                        <li><a asp-controller="Home" asp-action="About">@localizer["AboutNav"]</a></li>
+                        <li><a asp-controller="Home" asp-action="About">@localizer["Contact"]</a></li>
                     </ul>
                 </div>
             </div>
             <!--Instafeed -->
-          @await Component.InvokeAsync("Instafeed")
+            @await Component.InvokeAsync("Instafeed")
         </div>
         <hr>
         <div class="row">
@@ -33,7 +31,8 @@
                     <P>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         Copyright &copy;
-                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <script>document.write(new Date().getFullYear());</script>
+                        @localizer["copyright"]<i class="ti-heart" aria-hidden="true"></i> @localizer["by"]  <a href="https://colorlib.com" target="_blank"> Hajer Gafsi </a>@localizer["taraf"]
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </P>
                 </div>
@@ -41,10 +40,10 @@
             <div class="col-lg-4">
                 <div class="footer_icon social_icon">
                     <ul class="list-unstyled">
-                        <li><a href="#" class="single_social_icon"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#" class="single_social_icon"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#" class="single_social_icon"><i class="fas fa-globe"></i></a></li>
-                        <li><a href="#" class="single_social_icon"><i class="fab fa-behance"></i></a></li>
+                        <li><a class="single_social_icon"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a class="single_social_icon"><i class="fab fa-twitter"></i></a></li>
+                        <li><a class="single_social_icon"><i class="fas fa-globe"></i></a></li>
+                        <li><a class="single_social_icon"><i class="fab fa-behance"></i></a></li>
                     </ul>
                 </div>
             </div>

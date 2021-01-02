@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Proje.Models.Tour>
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model IEnumerable<Proje.Models.Tour>
 
 @foreach (var item in Model)
 {
@@ -9,7 +10,7 @@
             <p>
                 @item.description
             </p>
-            <a asp-action="Index" asp-controller="Tour" asp-route-id=@item.TourId class="read_btn">read more</a>
+            <a asp-action="Index" asp-controller="Tour" asp-route-id=@item.TourId class="read_btn">@localizer["more"]</a>
         </div>
     </div>
 }

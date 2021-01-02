@@ -1,14 +1,15 @@
-﻿@model IEnumerable<Proje.Models.Activities>
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@model IEnumerable<Proje.Models.Activities>
 
 <div class="row justify-content-center">
     @foreach (var item in Model)
     {
-        <div class="col-lg-4 col-sm-6" >
+        <div class="col-lg-4 col-sm-6">
             <div class="single_popular_place" style="height: 620px">
                 <img src=@item.imageUrl alt="">
                 <h4>@item.title</h4>
                 <p>@item.description</p>
-                <a asp-action="Index" asp-controller="Tour" asp-route-id=@item.TourId class="btn1">book now</a>
+                <a asp-action="Index" asp-controller="Tour" asp-route-id=@item.TourId class="btn1">@localizer["book"]</a>
             </div>
         </div>
     }

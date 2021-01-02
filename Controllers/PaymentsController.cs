@@ -21,6 +21,7 @@ namespace Proje.Controllers
 
 
         // GET: Payments/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
