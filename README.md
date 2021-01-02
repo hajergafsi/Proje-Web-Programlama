@@ -18,7 +18,7 @@
   <li>Asp.NET core MVC</li>
   <li>Entity Framework </li>
   <li>SQL Server Database </li>
-  <li>Razor Views </li>
+  <li>Razor Pages </li>
   <li>ASP.NET Authorization and Authentication</li>
   <li>ASP.NET Localization and Globalization</li>
   <li>Razor Views </li>
