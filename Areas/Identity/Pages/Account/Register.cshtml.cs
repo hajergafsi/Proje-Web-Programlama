@@ -48,11 +48,11 @@ namespace Proje.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [Display(Name = "Enter First Name")]
+            [Display(Name = "First Name")]
             public string ad { get; set; }
 
             [Required]
-            [Display(Name = "Enter Last Name")]
+            [Display(Name = "Last Name")]
             public string SoyAad { get; set; }
 
             [Required]

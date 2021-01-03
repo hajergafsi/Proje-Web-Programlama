@@ -121,7 +121,7 @@
     <value>Back to Bookings List</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Cancel Booking</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete  booking</value>

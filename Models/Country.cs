@@ -10,9 +10,11 @@ namespace Proje.Models
     public class Country
     {
         [Key]
+        [Required(ErrorMessage ="Country code is required ")]
         [MaxLength(3,ErrorMessage ="must be 3 characters")]
         [MinLength(3, ErrorMessage = "must be 3 characters")]
         public string CountryCode { get; set; }
+        [Required(ErrorMessage = "Country name is required ")]
         public string Name { get; set; }
     }
 }

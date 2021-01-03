@@ -11,7 +11,7 @@ namespace Proje.Models
         [Key]
         public int CardId { get; set; }
         [Required(ErrorMessage = "number is required")]
-        [MinLength(16, ErrorMessage = "must be 16 characters")]
+        [StringLength(16, ErrorMessage = "must be 16 characters")]
         [RegularExpression("^[0-9]*$",ErrorMessage ="Please enter only numbers")]
         [Display(Name = "number")]
         public string number { get; set; }
